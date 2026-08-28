@@ -16,7 +16,13 @@ import {
 import packageJson from "../package.json";
 
 const params: ConfigParams = {
-  outputPath: path.resolve(__dirname, ".webpack"),
+  // Where the bundle lands. __dirname resolves somewhere unexpected on the
+  // Vercel builder — the build reported "compiled successfully" while
+  // web/.webpack was never created — so the deploy passes an absolute path
+  // instead and leaves local builds on the default.
+  outputPath: process.env.LICHTBLICK_OUT
+    ? path.resolve(process.env.LICHTBLICK_OUT)
+    : path.resolve(__dirname, ".webpack"),
   contextPath: path.resolve(__dirname, "src"),
   entrypoint: "./entrypoint.tsx",
   // No source maps in the published build: they were 128 MB of the 170 MB
