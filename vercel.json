@@ -1,5 +1,5 @@
 {
-  "buildCommand": "echo \"PWD=$PWD\"; echo \"--- here:\"; ls -a; echo \"--- parent:\"; ls -a ..; R=\"\"; for d in . .. ../.. ../../..; do if [ -f \"$d/yarn.lock\" ]; then R=\"$d\"; break; fi; done; echo \"ROOT=$R\"; if [ -z \"$R\" ]; then echo \"!! no yarn.lock anywhere above\"; exit 1; fi; OUT=\"$PWD/vercel-static\"; rm -rf \"$OUT\"; cd \"$R\"; COREPACK_ENABLE_DOWNLOAD_PROMPT=0 LICHTBLICK_OUT=\"$OUT\" corepack yarn web:build:prod; echo \"--- output:\"; ls \"$OUT/index.html\"; find \"$OUT\" -type f | wc -l",
+  "buildCommand": "VERCEL_CWD=\"$PWD\" COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn vercel:build",
   "outputDirectory": "vercel-static",
   "installCommand": "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn install --immutable",
   "github": {

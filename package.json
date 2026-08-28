@@ -29,6 +29,7 @@
     "desktop:start": "electron desktop/.webpack",
     "web:build:dev": "webpack --mode development --progress --config web/webpack.config.ts",
     "web:build:prod": "webpack --mode production --progress --config web/webpack.config.ts",
+    "vercel:build": "bash ci/vercel-build.sh",
     "web:serve": "webpack serve --mode development --progress --config web/webpack.config.ts",
     "benchmark:serve": "webpack serve --mode development --progress --config benchmark/webpack.config.ts",
     "benchmark:build:prod": "webpack --mode production --progress --config benchmark/webpack.config.ts",
