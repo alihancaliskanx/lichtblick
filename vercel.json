@@ -1,5 +1,5 @@
 {
-  "buildCommand": "bash \"$([ -f ci/vercel-build.sh ] && echo . || echo ..)/ci/vercel-build.sh\"",
+  "buildCommand": "echo \"PWD=$PWD\"; echo \"--- here:\"; ls -a; echo \"--- parent:\"; ls -a ..; R=\"\"; for d in . .. ../.. ../../..; do if [ -f \"$d/yarn.lock\" ]; then R=\"$d\"; break; fi; done; echo \"ROOT=$R\"; if [ -z \"$R\" ]; then echo \"!! no yarn.lock anywhere above\"; exit 1; fi; OUT=\"$PWD/vercel-static\"; rm -rf \"$OUT\"; cd \"$R\"; COREPACK_ENABLE_DOWNLOAD_PROMPT=0 LICHTBLICK_OUT=\"$OUT\" corepack yarn web:build:prod; echo \"--- output:\"; ls \"$OUT/index.html\"; find \"$OUT\" -type f | wc -l",
   "outputDirectory": "vercel-static",
   "installCommand": "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn install --immutable",
   "github": {
@@ -9,12 +9,30 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "origin" },
-        { "key": "Content-Security-Policy", "value": "base-uri 'self';" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
-        { "key": "Cross-Origin-Embedder-Policy", "value": "credentialless" }
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "origin"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "base-uri 'self';"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "credentialless"
+        }
       ]
     }
   ],
