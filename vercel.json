@@ -1,6 +1,6 @@
 {
-  "buildCommand": "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn web:build:prod",
-  "outputDirectory": "web/.webpack",
+  "buildCommand": "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn web:build:prod && rm -rf vercel-static && mv web/.webpack vercel-static",
+  "outputDirectory": "vercel-static",
   "installCommand": "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn install --immutable",
   "github": {
     "silent": true
