@@ -1,5 +1,5 @@
 {
-  "buildCommand": "bash ci/vercel-build.sh",
+  "buildCommand": "bash \"$([ -f ci/vercel-build.sh ] && echo . || echo ..)/ci/vercel-build.sh\"",
   "outputDirectory": "vercel-static",
   "installCommand": "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn install --immutable",
   "github": {
