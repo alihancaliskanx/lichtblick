@@ -1,7 +1,7 @@
 {
-  "buildCommand": "yarn web:build:prod",
+  "buildCommand": "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn web:build:prod",
   "outputDirectory": "web/.webpack",
-  "installCommand": "corepack enable && yarn install --immutable",
+  "installCommand": "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn install --immutable",
   "github": {
     "silent": true
   },
