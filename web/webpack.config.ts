@@ -19,7 +19,9 @@ const params: ConfigParams = {
   outputPath: path.resolve(__dirname, ".webpack"),
   contextPath: path.resolve(__dirname, "src"),
   entrypoint: "./entrypoint.tsx",
-  prodSourceMap: "source-map",
+  // No source maps in the published build: they were 128 MB of the 170 MB
+  // output and this deployment is public, while the source is on GitHub.
+  prodSourceMap: false,
   version: packageJson.version,
 };
 
